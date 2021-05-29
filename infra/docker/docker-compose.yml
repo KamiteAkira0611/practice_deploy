@@ -1,0 +1,19 @@
+version: "3"
+volumes:
+  secret:
+services:
+  terraform:
+    container_name: "terraform"
+    image: local/terraform
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: /bin/sh -c "./init.sh && ./move.sh"
+    volumes:
+      - ../src:/root/src
+    environment:
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:
+      AWS_REGION:
+      AWS_ACCOUNT_ID:
+      AWS_OUTPUT: json

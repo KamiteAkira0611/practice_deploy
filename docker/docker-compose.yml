@@ -1,0 +1,13 @@
+version: "3"
+services:
+  react:
+    build:
+      context: ../
+      dockerfile: ./docker/react/Dockerfile
+    image: practice-deploy-react
+    container_name: practice-deploy-react
+    command: npm install && npm start
+    volumes:
+      - ../react/:/app
+    ports:
+      - "8080:3000"
